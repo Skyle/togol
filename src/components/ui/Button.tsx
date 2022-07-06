@@ -9,7 +9,7 @@ function Button({ children, onClick }: Props) {
   return (
     <button
       onClick={onClick}
-      className="px-4 shadow py-2 border rounded-lg bg-white"
+      className="px-4 shadow py-2 border rounded-lg bg-neutral-50 transition-all duration-200 active:scale-105 ease-in-out"
     >
       {children}
     </button>

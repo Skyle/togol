@@ -26,7 +26,7 @@ export const TodoItemInput = () => {
     <div className="flex space-x-2 justify-center">
       <input
         value={value}
-        className="border shadow rounded-lg focus:outline-none px-4 py-2"
+        className="border border-neutral-300 shadow shadow-neutral-200 rounded-lg bg-neutral-50 focus:outline-none px-4 py-2"
         type="text"
         onChange={(e) => setValue(e.target.value)}
         onKeyUp={(e) => {
