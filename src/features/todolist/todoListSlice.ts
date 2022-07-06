@@ -26,13 +26,13 @@ export const todoListSlice = createSlice({
       // immutable state based off those changes
       state.todos.push(action.payload);
     },
-    delete: (state, action: PayloadAction<number>) => {
+    remove: (state, action: PayloadAction<number>) => {
       state.todos.splice(action.payload, 1);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, delete} = todoListSlice.actions;
+export const { add, remove } = todoListSlice.actions;
 
 export default todoListSlice.reducer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoItem } from '../features/todolist/todoListSlice';
+import { remove, TodoItem } from '../features/todolist/todoListSlice';
 import Button from './ui/Button';
 import { useSelector, useDispatch } from 'react-redux';
 type Props = { todo: TodoItem; index: number };
@@ -19,7 +19,7 @@ function Todo({ todo, index }: Props) {
         <div>
           <Button
             onClick={() => {
-              dispatch(delete { index });
+              dispatch(remove(index));
             }}
           >
             🗑
