@@ -1,4 +1,4 @@
-import { Todo } from "./components/Todo";
+import { Todos } from "./components/Todos";
 import { TodoItemInput } from "./components/TodoItemInput";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <main className="flex justify-center px-4">
         <div className="grid gap-4 max-w-lg">
           <TodoItemInput />
-          <Todo />
+          <Todos />
         </div>
       </main>
     </div>
