@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface TodoItem {
   value: String;
@@ -16,7 +16,7 @@ const initialState: TodoList = {
 };
 
 export const todoListSlice = createSlice({
-  name: "todoList",
+  name: 'todoList',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<TodoItem>) => {
@@ -25,6 +25,10 @@ export const todoListSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.todos.push(action.payload);
+      fetch('http://localhost:3055/todolist', {
+        method: 'post',
+        body: JSON.stringify(action.payload),
+      });
     },
     remove: (state, action: PayloadAction<number>) => {
       state.todos.splice(action.payload, 1);
