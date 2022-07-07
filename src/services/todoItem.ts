@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export interface TodoItem {
+  id: string;
   text: string;
-  createdAt: string;
+  createdAt?: string;
   checked: boolean;
 }
 // Define a service using a base URL and expected endpoints
@@ -20,9 +21,19 @@ export const todoItemApi = createApi({
         body: todoItem,
       }),
     }),
+    deleteTodoItem: builder.mutation({
+      query: (id) => ({
+        url: "/todolist/" + id,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllTodoItemsQuery, useAddTodoItemMutation } = todoItemApi;
+export const {
+  useGetAllTodoItemsQuery,
+  useAddTodoItemMutation,
+  useDeleteTodoItemMutation,
+} = todoItemApi;
