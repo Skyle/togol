@@ -21,7 +21,10 @@ export const TodoItemInput = () => {
       dispatch(add({ value, createdAt: date }));
       fetch("http://localhost:3055/todolist", {
         method: "post",
-        body: JSON.stringify({ value, createdAt: date }),
+        body: JSON.stringify({ value, createdAt: date, checked: false }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       setValue("");
     }
