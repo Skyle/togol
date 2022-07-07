@@ -8,7 +8,7 @@ export interface TodoItem {
 // Define a service using a base URL and expected endpoints
 export const todoItemApi = createApi({
   reducerPath: "todoItemApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3055/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_HOST }),
   endpoints: (builder) => ({
     getAllTodoItems: builder.query({
       query: () => `todolist`,

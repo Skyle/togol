@@ -1,7 +1,5 @@
 import { Todos } from "./components/Todos";
 import { TodoItemInput } from "./components/TodoItemInput";
-import { Provider } from "react-redux";
-import { store } from "./store";
 
 function App() {
   return (
