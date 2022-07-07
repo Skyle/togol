@@ -6,7 +6,7 @@ function App() {
     <div>
       <header className="py-4">
         <h1 className="text-4xl text-center tracking-widest font-serif">
-          Togol
+          Togol 🍋
         </h1>
       </header>
       <main className="flex justify-center px-4">
