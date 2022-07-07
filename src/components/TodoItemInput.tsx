@@ -1,49 +1,34 @@
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "../features/todolist/todoListSlice";
-import { RootState } from "../store";
 import { useState } from "react";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
+import {
+  useAddTodoItemMutation,
+  useGetAllTodoItemsQuery,
+} from "../services/todoItem";
 
 export const TodoItemInput = () => {
   const [value, setValue] = useState("");
+  const [addTodoItem, { isLoading }] = useAddTodoItemMutation();
+  const { refetch } = useGetAllTodoItemsQuery("");
 
-  const dispatch = useDispatch();
-  function dispatchTodoItem() {
-    if (value !== "") {
-      const options: Intl.DateTimeFormatOptions = {
-        day: "2-digit",
-        month: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-      };
-      const date = new Date().toLocaleDateString("de-DE", options);
-      dispatch(add({ value, createdAt: date }));
-      fetch("http://localhost:3055/todolist", {
-        method: "post",
-        body: JSON.stringify({ value, createdAt: date, checked: false }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  function handleAddTodoItem() {
+    addTodoItem({
+      text: value,
+      createdAt: String(new Date().toLocaleDateString()),
+    }).then(() => {
       setValue("");
-    }
+      refetch();
+    });
   }
-
   return (
     <div className="flex space-x-2 justify-center">
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onEnter={dispatchTodoItem}
+        onEnter={handleAddTodoItem}
       />
-      <Button
-        onClick={() => {
-          dispatchTodoItem();
-        }}
-      >
-        +
-      </Button>
+      <Button onClick={handleAddTodoItem}>+</Button>
     </div>
   );
 };
