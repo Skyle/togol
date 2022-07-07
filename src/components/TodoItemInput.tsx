@@ -1,30 +1,34 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { add } from '../features/todolist/todoListSlice';
-import { RootState } from '../store';
-import { useState } from 'react';
-import Button from './ui/Button';
-import Input from './ui/Input';
+import { useSelector, useDispatch } from "react-redux";
+import { add } from "../features/todolist/todoListSlice";
+import { RootState } from "../store";
+import { useState } from "react";
+import Button from "./ui/Button";
+import Input from "./ui/Input";
 
 export const TodoItemInput = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const dispatch = useDispatch();
   function dispatchTodoItem() {
-    if (value !== '') {
+    if (value !== "") {
       const options: Intl.DateTimeFormatOptions = {
-        day: '2-digit',
-        month: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
       };
-      const date = new Date().toLocaleDateString('de-DE', options);
+      const date = new Date().toLocaleDateString("de-DE", options);
       dispatch(add({ value, createdAt: date }));
-      setValue('');
+      fetch("http://localhost:3055/todolist", {
+        method: "post",
+        body: JSON.stringify({ value, createdAt: date }),
+      });
+      setValue("");
     }
   }
 
   return (
-    <div className='flex space-x-2 justify-center'>
+    <div className="flex space-x-2 justify-center">
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
