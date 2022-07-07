@@ -27,8 +27,8 @@ export const TodoItemInput = () => {
     <div className='flex space-x-2 justify-center'>
       <Input
         value={value}
-        setValue={setValue}
-        dispatchTodoItem={dispatchTodoItem}
+        onChange={(e) => setValue(e.target.value)}
+        onEnter={dispatchTodoItem}
       />
       <Button
         onClick={() => {
