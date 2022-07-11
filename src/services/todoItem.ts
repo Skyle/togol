@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export interface TodoItem {
   id: string;
   text: string;
@@ -7,7 +7,7 @@ export interface TodoItem {
 }
 // Define a service using a base URL and expected endpoints
 export const todoItemApi = createApi({
-  reducerPath: "todoItemApi",
+  reducerPath: 'todoItemApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_HOST }),
   endpoints: (builder) => ({
     getAllTodoItems: builder.query({
@@ -15,16 +15,23 @@ export const todoItemApi = createApi({
     }),
     addTodoItem: builder.mutation({
       query: (todoItem) => ({
-        url: "/todolist",
-        method: "POST",
+        url: '/todolist',
+        method: 'POST',
         // Include the entire post object as the body of the request
         body: todoItem,
       }),
     }),
     deleteTodoItem: builder.mutation({
       query: (id) => ({
-        url: "/todolist/" + id,
-        method: "DELETE",
+        url: '/todolist/' + id,
+        method: 'DELETE',
+      }),
+    }),
+    registerUser: builder.mutation({
+      query: (login) => ({
+        url: '/register',
+        method: 'POST',
+        body: login,
       }),
     }),
   }),
@@ -36,4 +43,5 @@ export const {
   useGetAllTodoItemsQuery,
   useAddTodoItemMutation,
   useDeleteTodoItemMutation,
+  useRegisterUserMutation,
 } = todoItemApi;
