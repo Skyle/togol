@@ -14,24 +14,25 @@ export const IndexPage = () => {
     <div className='grid gap-4 max-w-lg'>
       <TodoItemInput />
       <Todos />
+
       {isLogged ? (
         <Button onClick={() => {}}>Logout</Button>
       ) : (
-        <>
+        <div>
           <Link
-            className='text-center px-4 shadow py-2 border rounded-lg bg-neutral-50 transition-all duration-200 active:scale-105 ease-in-out'
+            className='text-center mx-5 font-medium hover:text-red-900'
             to='/login'
           >
             Login
           </Link>
 
           <Link
-            className='text-center px-4 shadow py-2 border rounded-lg bg-neutral-50 transition-all duration-200 active:scale-105 ease-in-out'
+            className='text-center font-medium hover:text-red-900'
             to='/register'
           >
             SignUp
           </Link>
-        </>
+        </div>
       )}
 
       <div>{JSON.stringify(localTodoList)}</div>
