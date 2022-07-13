@@ -1,7 +1,7 @@
 import Input from '../components/ui/Input';
 import { useState } from 'react';
 import Button from '../components/ui/Button';
-import { useRegisterUserMutation } from '../services/todoItem';
+import { useRegisterUserMutation } from '../services/todoApi';
 
 export const Register = () => {
   const [name, setName] = useState('');
