@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
+import TextLink from '../components/ui/TextLink';
 import { useLoginUserMutation } from '../services/todoApi';
 
 type Props = {};
@@ -43,14 +44,10 @@ function LoginPage({}: Props) {
       >
         Login
       </Button>
-      <p className='my-4'>
-        Don't have an account? please
-        <p className='my-2'>
-          <Link className='font-medium hover:text-red-900' to='/register'>
-            SignUp
-          </Link>
-        </p>
-      </p>
+      <div>
+        <p className='my-3'>Don't have an account? please</p>
+        <TextLink route='/register'>SignUp</TextLink>
+      </div>
     </div>
   );
 }

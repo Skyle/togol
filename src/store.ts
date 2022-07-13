@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { todoApi } from './services/todoApi';
 import localTodosReducer from './services/localTodos';
+import userReducer from './services/userSlice';
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [todoApi.reducerPath]: todoApi.reducer,
     localTodos: localTodosReducer,
+    user: userReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

@@ -4,6 +4,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/ui/Button';
+import { LogoutComponent } from '../components/user/LogoutComponent';
+import TextLink from '../components/ui/TextLink';
 
 export const IndexPage = () => {
   const localTodoList = useSelector(
@@ -19,21 +21,11 @@ export const IndexPage = () => {
         <Button onClick={() => {}}>Logout</Button>
       ) : (
         <div>
-          <Link
-            className='text-center mx-5 font-medium hover:text-red-900'
-            to='/login'
-          >
-            Login
-          </Link>
-
-          <Link
-            className='text-center font-medium hover:text-red-900'
-            to='/register'
-          >
-            SignUp
-          </Link>
+          <TextLink route='/login'>Login</TextLink>
+          <TextLink route='/register'>SignUp</TextLink>
         </div>
       )}
+      <LogoutComponent />
 
       <div>{JSON.stringify(localTodoList)}</div>
     </div>

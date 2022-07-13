@@ -3,8 +3,12 @@ import { useState } from 'react';
 import Button from '../components/ui/Button';
 import { useRegisterUserMutation } from '../services/todoApi';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setToken } from '../services/userSlice';
+import TextLink from '../components/ui/TextLink';
 
 export const Register = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [registerUser] = useRegisterUserMutation();
@@ -25,8 +29,10 @@ export const Register = () => {
       />
       <Button
         onClick={() => {
-          registerUser({ name, password }).then((response) => {
-            if (response) {
+          registerUser({ name, password }).then((response: any) => {
+            if (response.data.token) {
+              dispatch(setToken(response.data.token));
+
               navigate('/');
             }
           });
@@ -34,14 +40,10 @@ export const Register = () => {
       >
         SignUp
       </Button>
-      <p className='my-4'>
-        Already have an accout? please
-        <p className='my-2'>
-          <Link className='font-medium hover:text-red-900' to='/login'>
-            Login
-          </Link>
-        </p>
-      </p>
+      <div>
+        <p className='my-3'>Already have an accout? please</p>
+        <TextLink route='/login'>Login</TextLink>
+      </div>
     </div>
   );
 };
