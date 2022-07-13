@@ -1,6 +1,4 @@
-import { Todos } from './components/Todos';
-import { TodoItemInput } from './components/TodoItemInput';
-import { Routes, Route, NavLink, Link } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import { IndexPage } from './pages';
 import { Register } from './pages/register';
 import LoginPage from './pages/login';

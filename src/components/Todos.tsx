@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { TodoItem, useGetAllTodoItemsQuery } from "../services/todoItem";
+import { Todo, useGetAllTodosQuery } from '../services/todoApi';
 
-import Todo from "./Todo";
+import TodoComponent from './TodoComponent';
 export const Todos = () => {
-  const { data, error, isLoading } = useGetAllTodoItemsQuery("");
+  const { data, error, isLoading } = useGetAllTodosQuery('');
   if (isLoading) return null;
   if (data && data.length !== 0)
     return (
-      <div className="rounded-lg shadow border p-4 grid gap-4">
-        {data.map((todo: TodoItem, i: number) => (
+      <div className='rounded-lg shadow border p-4 grid gap-4'>
+        {data.map((todo: Todo, i: number) => (
           <div key={i}>
-            <Todo todo={todo} index={i}></Todo>
+            <TodoComponent todo={todo} index={i}></TodoComponent>
           </div>
         ))}
       </div>

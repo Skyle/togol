@@ -1,18 +1,18 @@
-import { TodoItemInput } from '../components/TodoItemInput';
+import { TodoInput } from '../components/TodoInput';
 import { Todos } from '../components/Todos';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/ui/Button';
 
 export const IndexPage = () => {
   const localTodoList = useSelector(
-    (state: RootState) => state.localTodoList.localTodoItems
+    (state: RootState) => state.localTodos.todos
   );
   const isLogged = false;
   return (
     <div className='grid gap-4 max-w-lg'>
-      <TodoItemInput />
+      <TodoInput />
       <Todos />
 
       {isLogged ? (

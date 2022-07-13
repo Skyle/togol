@@ -1,5 +1,6 @@
+import React from 'react';
 import Button from './ui/Button';
-
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Todo,
   useDeleteTodoMutation,
@@ -7,8 +8,8 @@ import {
 } from '../services/todoApi';
 type Props = { todo: Todo; index: number };
 
-function Todo({ todo, index }: Props) {
-  const [deleteTodoItem] = useDeleteTodoMutation();
+function TodoComponent({ todo, index }: Props) {
+  const [deleteTodo] = useDeleteTodoMutation();
   const { refetch } = useGetAllTodosQuery('');
 
   return (
@@ -23,7 +24,7 @@ function Todo({ todo, index }: Props) {
         <div>
           <Button
             onClick={() => {
-              deleteTodoItem(todo.id).then(() => {
+              deleteTodo(todo.id).then(() => {
                 refetch();
               });
             }}
@@ -36,4 +37,4 @@ function Todo({ todo, index }: Props) {
   );
 }
 
-export default Todo;
+export default TodoComponent;

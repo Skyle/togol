@@ -1,53 +1,53 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-export interface TodoItem {
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+export interface Todo {
   id?: string;
   text: string;
   createdAt?: string;
   checked?: boolean;
 }
 // Define a service using a base URL and expected endpoints
-export const todoItemApi = createApi({
-  reducerPath: "todoItemApi",
+export const todoApi = createApi({
+  reducerPath: 'todoApi',
 
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_HOST,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       if (token) {
-        headers.set("authorization", `Bearer ${token}`);
+        headers.set('authorization', `Bearer ${token}`);
       }
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    getAllTodoItems: builder.query({
-      query: () => `todolist`,
+    getAllTodos: builder.query({
+      query: () => `todos`,
     }),
-    addTodoItem: builder.mutation({
-      query: (todoItem) => ({
-        url: "/todolist",
-        method: "POST",
+    addTodo: builder.mutation({
+      query: (todo) => ({
+        url: '/todo',
+        method: 'POST',
         // Include the entire post object as the body of the request
-        body: todoItem,
+        body: todo,
       }),
     }),
-    deleteTodoItem: builder.mutation({
+    deleteTodo: builder.mutation({
       query: (id) => ({
-        url: "/todolist/" + id,
-        method: "DELETE",
+        url: '/todo/' + id,
+        method: 'DELETE',
       }),
     }),
     registerUser: builder.mutation({
       query: (register) => ({
-        url: "/register",
-        method: "POST",
+        url: '/register',
+        method: 'POST',
         body: register,
       }),
     }),
     loginUser: builder.mutation({
       query: (login) => ({
-        url: "/login",
-        method: "POST",
+        url: '/login',
+        method: 'POST',
         body: login,
       }),
     }),
@@ -57,9 +57,9 @@ export const todoItemApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetAllTodoItemsQuery,
-  useAddTodoItemMutation,
-  useDeleteTodoItemMutation,
+  useGetAllTodosQuery,
+  useAddTodoMutation,
+  useDeleteTodoMutation,
   useRegisterUserMutation,
   useLoginUserMutation,
-} = todoItemApi;
+} = todoApi;
