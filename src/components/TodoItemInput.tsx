@@ -1,17 +1,17 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import Button from './ui/Button';
+import Input from './ui/Input';
 import {
   useAddTodoItemMutation,
   useGetAllTodoItemsQuery,
-} from "../services/todoItem";
-import { add } from "../services/localTodoItem";
+} from '../services/todoItem';
+import { add } from '../services/localTodoItem';
 
 export const TodoItemInput = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [addTodoItem, { isLoading }] = useAddTodoItemMutation();
-  const { refetch } = useGetAllTodoItemsQuery("");
+  const { refetch } = useGetAllTodoItemsQuery('');
   const dispatch = useDispatch();
 
   function handleAddTodoItem() {
@@ -25,12 +25,12 @@ export const TodoItemInput = () => {
       text: value,
       createdAt: String(new Date().toLocaleDateString()),
     }).then(() => {
-      setValue("");
+      setValue('');
       refetch();
     });
   }
   return (
-    <div className="flex space-x-2 justify-center">
+    <div className='flex space-x-2 justify-center'>
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}
