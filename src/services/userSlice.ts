@@ -23,8 +23,14 @@ export const userSlice = createSlice({
       state.token = action.payload;
       localStorage.setItem('token', action.payload);
     },
+    logout: (state) => {
+      state.token = null;
+      localStorage.removeItem('token');
+    },
   },
 });
+
+export const { logout } = userSlice.actions;
 
 export const { setToken } = userSlice.actions;
 

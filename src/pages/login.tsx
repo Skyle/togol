@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import TextLink from '../components/ui/TextLink';
 import { useLoginUserMutation } from '../services/todoApi';
+import { setToken } from '../services/userSlice';
 
-type Props = {};
-
-function LoginPage({}: Props) {
+function LoginPage() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [loginUser] = useLoginUserMutation();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className='flex flex-col'>
       <label>Name</label>
@@ -22,6 +23,7 @@ function LoginPage({}: Props) {
       />
       <label>Password</label>
       <Input
+        type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder='Password...'
@@ -31,7 +33,7 @@ function LoginPage({}: Props) {
           loginUser({ name, password })
             .then((res: any) => {
               if (res.data.token) {
-                localStorage.setItem('token', res.data.token);
+                dispatch(setToken(res.data.token));
                 navigate('/');
               }
             })

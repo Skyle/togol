@@ -1,6 +1,6 @@
 import { TodoInput } from '../components/TodoInput';
 import { Todos } from '../components/Todos';
-import { Link, NavLink } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/ui/Button';
@@ -11,20 +11,20 @@ export const IndexPage = () => {
   const localTodoList = useSelector(
     (state: RootState) => state.localTodos.todos
   );
-  const isLogged = false;
+
   return (
     <div className='grid gap-4 max-w-lg'>
       <TodoInput />
       <Todos />
 
-      {isLogged ? (
+      {/* {isLogged ? (
         <Button onClick={() => {}}>Logout</Button>
       ) : (
         <div>
           <TextLink route='/login'>Login</TextLink>
           <TextLink route='/register'>SignUp</TextLink>
         </div>
-      )}
+      )} */}
       <LogoutComponent />
 
       <div>{JSON.stringify(localTodoList)}</div>

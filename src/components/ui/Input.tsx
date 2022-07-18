@@ -6,10 +6,18 @@ type Props = {
   onEnter?: any;
   placeholder?: string;
   labelText?: string;
+  type?: 'text' | 'password';
 };
 
 function Input(props: Props) {
-  const { value, onChange, onEnter, placeholder, labelText } = props;
+  const {
+    value,
+    onChange,
+    onEnter,
+    placeholder,
+    labelText,
+    type = 'text',
+  } = props;
 
   return (
     <>
@@ -18,7 +26,7 @@ function Input(props: Props) {
         value={value}
         placeholder={placeholder}
         className='my-4 border border-neutral-300 shadow shadow-neutral-200 rounded-lg bg-neutral-50 focus:outline-none px-4 py-2'
-        type='text'
+        type={type}
         onChange={onChange}
         onKeyUp={(e) => {
           if (e.key === 'Enter') {
