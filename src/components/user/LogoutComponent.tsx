@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetAllTodosQuery } from '../../services/todoApi';
+
 import { logout } from '../../services/userSlice';
 import { RootState } from '../../store';
 import Button from '../ui/Button';
@@ -8,7 +8,7 @@ import TextLink from '../ui/TextLink';
 export const LogoutComponent = () => {
   const token = useSelector((state: RootState) => state.user.token);
   const dispatch = useDispatch();
-  const { refetch } = useGetAllTodosQuery('');
+
   console.log(token);
   return (
     <div>
@@ -17,6 +17,7 @@ export const LogoutComponent = () => {
           <Button
             onClick={() => {
               dispatch(logout());
+              location.reload();
             }}
           >
             Logout
