@@ -17,17 +17,9 @@ export const IndexPage = () => {
       <TodoInput />
       <Todos />
 
-      {/* {isLogged ? (
-        <Button onClick={() => {}}>Logout</Button>
-      ) : (
-        <div>
-          <TextLink route='/login'>Login</TextLink>
-          <TextLink route='/register'>SignUp</TextLink>
-        </div>
-      )} */}
       <LogoutComponent />
 
-      <div>{JSON.stringify(localTodoList)}</div>
+      {/* <div>{JSON.stringify(localTodoList)}</div> */}
     </div>
   );
 };
