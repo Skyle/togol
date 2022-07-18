@@ -14,35 +14,40 @@ export const Register = () => {
   const [registerUser] = useRegisterUserMutation();
   let navigate = useNavigate();
   return (
-    <div className='flex flex-col'>
-      <label>Name</label>
-      <Input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder='Name...'
-      />
-      <label>Password</label>
-      <Input
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder='Password...'
-      />
-      <Button
-        onClick={() => {
-          registerUser({ name, password }).then((response: any) => {
-            if (response.data.token) {
-              dispatch(setToken(response.data.token));
-
-              navigate('/');
-            }
-          });
-        }}
-      >
-        SignUp
-      </Button>
+    <div className='grid gap-4'>
       <div>
-        <p className='my-3'>Already have an accout? please</p>
-        <TextLink route='/login'>Login</TextLink>
+        <Input
+          labelText='Benutzername'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Name...'
+        />
+      </div>
+      <div>
+        <Input
+          labelText='Passwort'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='Passwort...'
+        />
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            registerUser({ name, password }).then((response: any) => {
+              if (response.data.token) {
+                dispatch(setToken(response.data.token));
+
+                navigate('/');
+              }
+            });
+          }}
+        >
+          Registrieren
+        </Button>
+        <span className='pl-2'>
+          <TextLink route='/login'>Login?</TextLink>
+        </span>
       </div>
     </div>
   );

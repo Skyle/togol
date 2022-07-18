@@ -24,9 +24,8 @@ export const LogoutComponent = () => {
           </Button>
         </>
       ) : (
-        <div>
+        <div className='ml-2'>
           <TextLink route='/login'>Login</TextLink>
-          <TextLink route='/register'>SignUp</TextLink>
         </div>
       )}
     </div>

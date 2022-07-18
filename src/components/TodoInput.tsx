@@ -28,12 +28,16 @@ export const TodoInput = () => {
   }
   return (
     <div className='flex space-x-2 justify-center'>
-      <Input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onEnter={handleAddTodo}
-      />
-      <Button onClick={handleAddTodo}>+</Button>
+      <div>
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onEnter={handleAddTodo}
+        />
+      </div>
+      <div>
+        <Button onClick={handleAddTodo}>+</Button>
+      </div>
     </div>
   );
 };

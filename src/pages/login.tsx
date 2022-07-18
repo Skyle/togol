@@ -14,41 +14,46 @@ function LoginPage() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   return (
-    <div className='flex flex-col'>
-      <label>Name</label>
-      <Input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder='Name...'
-      />
-      <label>Password</label>
-      <Input
-        type='password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder='Password...'
-      />
-      <Button
-        onClick={() => {
-          loginUser({ name, password })
-            .then((res: any) => {
-              if (res.data.token) {
-                dispatch(setToken(res.data.token));
-                navigate('/');
-              }
-            })
-            .catch((err: any) => {
-              if (err) {
-                console.log('Login fail');
-              }
-            });
-        }}
-      >
-        Login
-      </Button>
+    <div className='grid gap-4'>
       <div>
-        <p className='my-3'>Don't have an account? please</p>
-        <TextLink route='/register'>SignUp</TextLink>
+        <Input
+          labelText='Benutzername'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Name...'
+        />
+      </div>
+      <div>
+        <Input
+          labelText='Password'
+          type='password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='Password...'
+        />
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            loginUser({ name, password })
+              .then((res: any) => {
+                if (res.data.token) {
+                  dispatch(setToken(res.data.token));
+                  navigate('/');
+                }
+              })
+              .catch((err: any) => {
+                if (err) {
+                  console.log('Login fail');
+                }
+              });
+          }}
+        >
+          Login
+        </Button>
+        <span className='pl-2'>
+          <TextLink route='/register'>Registriern?</TextLink>
+        </span>
       </div>
     </div>
   );

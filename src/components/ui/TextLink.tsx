@@ -8,7 +8,7 @@ interface TextlinkProps {
 function TextLink({ children, route }: TextlinkProps) {
   return (
     <Link
-      className='text-center mx-2 font-medium hover:text-red-900'
+      className='text-center mx-2 font-normal hover:text-yellow-400 transition-colors duration-200'
       to={route}
     >
       {children}
