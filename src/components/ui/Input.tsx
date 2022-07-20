@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   value: string | number | readonly string[];
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onEnter?: any;
+  onEnter?: Function;
   placeholder?: string;
   labelText?: string;
-  type?: 'text' | 'password';
+  type?: "text" | "password";
 };
 
 function Input(props: Props) {
@@ -16,13 +16,13 @@ function Input(props: Props) {
     onEnter,
     placeholder,
     labelText,
-    type = 'text',
+    type = "text",
   } = props;
 
   return (
-    <div className='grid '>
+    <div className="grid ">
       {labelText && (
-        <div className='pb-2'>
+        <div className="pb-2">
           <label>{labelText}</label>
         </div>
       )}
@@ -30,12 +30,12 @@ function Input(props: Props) {
         <input
           value={value}
           placeholder={placeholder}
-          className=' border border-neutral-300 shadow shadow-neutral-200 rounded-lg bg-neutral-50 focus:outline-none px-4 py-2 hover:border-neutral-400'
+          className=" border border-neutral-300 shadow shadow-neutral-200 rounded-lg bg-neutral-50 focus:outline-none px-4 py-2 hover:border-neutral-400"
           type={type}
           onChange={onChange}
-          onKeyUp={(e) => {
-            if (e.key === 'Enter') {
-              onEnter();
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              if (onEnter) onEnter();
             }
           }}
         />
